@@ -9,6 +9,17 @@ const movieSelect = document.getElementById('movie');
 // The value in <select> -> <option> is a string by default; using unary plus to cast to number. Easier than using parseInt()
 const ticketPrice = +movieSelect.value;
 
+// Update total and count
+function updateSelectedCount() {
+  const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
+  // length is a property that will get # elements in array, or in this case, a NodeList
+  const selectedSeatsCount = selectedSeats.length;
+
+  count.innerText = selectedSeatsCount;
+  total.innerText = selectedSeatsCount * ticketPrice;
+}
+
 container.addEventListener('click', (e) => {
   // e.target: element that's clicked on
   if (
@@ -16,5 +27,7 @@ container.addEventListener('click', (e) => {
     !e.target.classList.contains('occupied')
   ) {
     e.target.classList.toggle('selected');
+
+    updateSelectedCount();
   }
 });
