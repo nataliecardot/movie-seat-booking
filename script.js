@@ -20,7 +20,8 @@ function updateSelectedCount() {
   total.innerText = selectedSeatsCount * ticketPrice;
 }
 
-// Movie select event. Change event is fired, not click, when a new option is clicked
+// Movie select event
+// change event is fired, not click, when a new option is clicked
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = +e.target.value;
   updateSelectedCount();
