@@ -9,6 +9,13 @@ const movieSelect = document.getElementById('movie'); // Select list
 // The value in <select> -> <option> is a string by default; using unary plus to cast to number. Easier than using parseInt()
 let ticketPrice = +movieSelect.value;
 
+// Save selected movie index and price
+function setMovieData(movieIndex, moviePrice) {
+  // Saves in browser's local storage, will populate UI with this saved data
+  localStorage.setItem('selectedMovieIndex', movieIndex);
+  localStorage.setItem('selectedMoviePrice', moviePrice);
+}
+
 // Update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -19,7 +26,8 @@ function updateSelectedCount() {
   // Return a new array of indexes
   const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
 
-  console.log(seatsIndex);
+  // JSON.stringify() converts an array like [1, 2] to '[1, 2]', whereas toString would convert it to '1, 2'
+  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
 
   // length is a property that will get # elements in array, or in this case, a NodeList
   const selectedSeatsCount = selectedSeats.length;
@@ -32,6 +40,7 @@ function updateSelectedCount() {
 // change event is fired, not click, when a new option is clicked
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = +e.target.value;
+  setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 });
 
