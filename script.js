@@ -1,5 +1,5 @@
 const container = document.querySelector('.container');
-// querySelectorAll takes them all and puts them into a (static) NodeList, which is similar to an array (can use array methods with it)
+// querySelectorAll takes them all and puts them into a (static) NodeList, which is similar to an array (can use some array methods like forEach on it)
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count'); // Seat count (span)
 const total = document.getElementById('total');
@@ -12,6 +12,14 @@ let ticketPrice = +movieSelect.value;
 // Update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
+  // Goal: Save selected seats. Problem: selectedSeats is a NodeList of elements with div.seat.selected. This is the solution:
+  // Copy selected seats into array using spread operator (NodeList is converted to a regular array, without brackets; just values are passed in), so can use map and indexOf array methods on it
+  // Map through array
+  // Return a new array of indexes
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+  console.log(seatsIndex);
 
   // length is a property that will get # elements in array, or in this case, a NodeList
   const selectedSeatsCount = selectedSeats.length;
