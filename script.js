@@ -24,8 +24,7 @@ function updateSelectedCount() {
 
   // Goal: Save selected seats. Problem: selectedSeats is a NodeList of elements with div.seat.selected. This is the solution:
   // Copy selected seats into array using spread operator (NodeList is converted to a regular array, without brackets; just values are passed in), so can use map and indexOf array methods on it
-  // Map through array
-  // Return a new array of indexes
+  // Map through array, comparing each of selected seats with array of seats not occupied, getting index of each. Return array of these indexes
   const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
 
   // JSON.stringify() converts an array like [1, 2] to '[1, 2]', whereas toString would convert it to '1, 2'
@@ -80,3 +79,6 @@ container.addEventListener('click', (e) => {
     updateSelectedCount();
   }
 });
+
+// Calling here so correct amounts (count and total price) saved to local storage are reflected in UI
+updateSelectedCount();
