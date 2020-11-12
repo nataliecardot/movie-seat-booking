@@ -51,6 +51,13 @@ function populateUI() {
       }
     });
   }
+
+  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+
+  if (selectedMovieIndex !== null) {
+    // selectedIndex property sets or returns index of selected option in a dropdown list
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
 }
 
 // Movie select event
