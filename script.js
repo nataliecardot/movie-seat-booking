@@ -46,6 +46,9 @@ function populateUI() {
     seats.forEach((seat, index) => {
       // Could also use ES7 includes()
       if (selectedSeats.indexOf(index) > -1) {
+        // classList property returns class name(s) of an element as a DOMTokenList object
+        // This property is useful to add, remove and toggle CSS classes on an element
+        // The classList property is read-only, however, you can modify it by using the add() and remove() methods
         seat.classList.add('selected');
       }
     });
