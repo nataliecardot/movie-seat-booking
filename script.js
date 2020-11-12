@@ -14,8 +14,8 @@ let ticketPrice = +movieSelect.value;
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   // Saves in browser's local storage, will populate UI with this saved data
-  localStorage.setItem('selectedMovieIndex', movieIndex);
-  localStorage.setItem('selectedMoviePrice', moviePrice);
+  sessionStorage.setItem('selectedMovieIndex', movieIndex);
+  sessionStorage.setItem('selectedMoviePrice', moviePrice);
 }
 
 // Update total and count
@@ -28,7 +28,7 @@ function updateSelectedCountAndTotal() {
   const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
 
   // JSON.stringify() converts an array like [1, 2] to '[1, 2]', whereas toString would convert it to '1, 2'
-  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
+  sessionStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
 
   // length is a property that will get # elements in array, or in this case, a NodeList
   const selectedSeatsCount = selectedSeats.length;
@@ -40,7 +40,7 @@ function updateSelectedCountAndTotal() {
 // Get data from local storage and populate UI
 function populateUI() {
   // JSON.parse to turn JSON string back into JS object (array)
-  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+  const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats'));
 
   if (selectedSeats !== null && selectedSeats.length > 0) {
     seats.forEach((seat, index) => {
@@ -54,7 +54,7 @@ function populateUI() {
     });
   }
 
-  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+  const selectedMovieIndex = sessionStorage.getItem('selectedMovieIndex');
 
   if (selectedMovieIndex !== null) {
     // selectedIndex property sets or returns index of selected option in a dropdown list
