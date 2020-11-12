@@ -19,7 +19,7 @@ function setMovieData(movieIndex, moviePrice) {
 }
 
 // Update total and count
-function updateSelectedCount() {
+function updateSelectedCountAndTotal() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
   // Goal: Save selected seats. Problem: selectedSeats is a NodeList of elements with div.seat.selected. This is the solution:
@@ -67,7 +67,7 @@ function populateUI() {
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = +e.target.value;
   setMovieData(e.target.selectedIndex, e.target.value);
-  updateSelectedCount();
+  updateSelectedCountAndTotal();
 });
 
 // Seat click event
@@ -79,9 +79,9 @@ container.addEventListener('click', (e) => {
   ) {
     e.target.classList.toggle('selected');
 
-    updateSelectedCount();
+    updateSelectedCountAndTotal();
   }
 });
 
 // Calling here so correct amounts (count and total price) saved to local storage are reflected in UI
-updateSelectedCount();
+updateSelectedCountAndTotal();
