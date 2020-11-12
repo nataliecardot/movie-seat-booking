@@ -12,4 +12,4 @@ Data is saved to session storage and the UI is populated with that data, so data
 - User can select/deselect seats
 - User cannot select occupied seats
 - Number of seats and price will update
-- Seats, movie and price are saved to session storage so that UI is still populated on refresh
+- Seats, movie, and price are saved to session storage so that UI is still populated on refresh
